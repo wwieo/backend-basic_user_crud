@@ -7,14 +7,20 @@ import (
 )
 
 func InitRouter() *gin.Engine {
-	s := controller.NewUserController()
+	userController := controller.NewUserController()
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
 		c.Data(200, "text/plain", []byte("Hello world!"))
 	})
 
-	router.POST("/user", s.CreateUser)
+	router.POST("/user", userController.CreateUser)
+
+	router.GET("/user/:username", userController.FindUser)
+
+	router.PUT("/user/:username", userController.UpdateUser)
+
+	router.DELETE("/user/:username", userController.DeleteUser)
 
 	return router
 }
