@@ -1,0 +1,7 @@
+mysql:
+  url: "localhost"
+  username: "root"
+  port: 3306
+  password : ""
+  database: "test"  
+  table: "user"
