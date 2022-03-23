@@ -2,6 +2,7 @@ package dao
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
@@ -21,13 +22,12 @@ func GetConfig() (config *viper.Viper) {
 	config.SetConfigType("yaml")
 
 	if err := config.ReadInConfig(); err != nil {
-		panic("config err: " + err.Error())
+		log.Fatal("Config err: " + err.Error())
 	}
 	return config
 }
 
 func init() {
-
 	mysqlConfig := *new(model.MysqlConfig)
 	config := GetConfig()
 
@@ -46,12 +46,12 @@ func init() {
 	var err error
 
 	if Orm, err = gorm.Open(mysql.Open(addr), &gorm.Config{}); err != nil {
-		fmt.Println("connect mysql failed:", err)
+		log.Fatal("Connect mysql failed:", err)
 		return
 	}
 
 	if _, err := Orm.DB(); err != nil {
-		fmt.Println("get db failed:", err)
+		log.Fatal("Get mysql database failed:", err)
 		return
 	}
 

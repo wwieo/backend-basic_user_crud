@@ -17,11 +17,13 @@ func NewUserController() *UserController {
 }
 
 var (
-	userDao         = dao.NewUserDao()
-	utilsController = NewUtilsController()
+	apiRecordController = NewApiRecordController()
+	userDao             = dao.NewUserDao()
+	utilsController     = NewUtilsController()
 )
 
 func (userController UserController) FindUser(context *gin.Context) {
+	apiRecordController.IncrApiRecord("Find")
 	user := &model.User{
 		Username: context.Param("username"),
 	}
@@ -35,6 +37,7 @@ func (userController UserController) FindUser(context *gin.Context) {
 }
 
 func (userController UserController) CreateUser(context *gin.Context) {
+	apiRecordController.IncrApiRecord("Create")
 	user := &model.User{
 		Username: context.Request.FormValue("username"),
 		Password: context.Request.FormValue("password"),
@@ -52,6 +55,7 @@ func (userController UserController) CreateUser(context *gin.Context) {
 }
 
 func (userController UserController) UpdateUser(context *gin.Context) {
+	apiRecordController.IncrApiRecord("Update")
 	user := &model.User{
 		Username: context.Param("username"),
 		Password: context.Request.FormValue("password"),
@@ -75,6 +79,7 @@ func (userController UserController) UpdateUser(context *gin.Context) {
 }
 
 func (userController UserController) DeleteUser(context *gin.Context) {
+	apiRecordController.IncrApiRecord("Delete")
 	user := &model.User{
 		Username: context.Param("username"),
 	}

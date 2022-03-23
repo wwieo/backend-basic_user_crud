@@ -8,6 +8,10 @@ import (
 
 func InitRouter() *gin.Engine {
 	userController := controller.NewUserController()
+	apiRecordController := controller.NewApiRecordController()
+
+	apiRecordController.InitApiRecord()
+
 	router := gin.Default()
 
 	router.GET("/", func(c *gin.Context) {
