@@ -26,5 +26,7 @@ func InitRouter() *gin.Engine {
 
 	router.DELETE("/user/:username", userController.DeleteUser)
 
+	router.GET("/api_records", apiRecordController.GetApiRecord)
+
 	return router
 }

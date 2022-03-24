@@ -52,3 +52,15 @@ func (apiRecordDao *ApiRecordDao) IncrApiRecord(key string) {
 		fmt.Printf("Api %s called times: %d\n", key, times.Val())
 	}
 }
+
+func (apiRecordDao *ApiRecordDao) GetApiRecord() (rst map[string]interface{}) {
+	rst = make(map[string]interface{})
+
+	rst["createTimes"] = redisClient.Do("GET", "Create").Val()
+	rst["findTimes"] = redisClient.Do("GET", "Find").Val()
+	rst["updateTimes"] = redisClient.Do("GET", "Update").Val()
+	rst["deleteTimes"] = redisClient.Do("GET", "Delete").Val()
+
+	fmt.Println(rst)
+	return
+}
