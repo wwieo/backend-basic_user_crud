@@ -1,12 +1,12 @@
 mysql:
-  url: "localhost"
+  url: "mysql"
   username: "root"
   port: 3306
   password : ""
-  database: "test"  
+  database: "test"
   table: "user"
 redis:
-  url: "localhost"
+  url: "redis"
   port: 6379
   password: ""
   db: 0

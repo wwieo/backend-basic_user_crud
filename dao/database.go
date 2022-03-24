@@ -44,7 +44,6 @@ func init() {
 		mysqlConfig.Url, mysqlConfig.Port, mysqlConfig.Database)
 
 	var err error
-
 	if Orm, err = gorm.Open(mysql.Open(addr), &gorm.Config{}); err != nil {
 		log.Fatal("Connect mysql failed:", err)
 		return
